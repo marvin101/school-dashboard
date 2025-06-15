@@ -1,33 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Sidebar } from './components/sidebar'
+import { Card, CardContent } from './components/ui/card';
+import { StudentTable } from './components/StudentTable';
 import './App.css'
 
+const tabs = ['Dashboard', 'Students', 'Teachers', 'Classes', ' Exams', ' Notices'];
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState('Dashboard')
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <div className="flex min-h-screen bg-gray-100">
+      <Sidebar tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      <main className="flex-1 p-6">
+        <h1 className="text-2xl font-bold mb-4">{activeTab}</h1>
+        <Card>
+          <CardContent className="p-4">
+            {activeTab === "Dashboard" && <p>Welcome to the School Dashboard.</p>}
+            {activeTab === "Students" && <StudentTable />}
+            {activeTab === "Teachers" && <p>Manage teacher data here.</p>}
+            {activeTab === "Classes" && <p>View and assign classes.</p>}
+            {activeTab === "Exams" && <p>Manage examinations here.</p>}
+            {activeTab === "Notices" && <p>Post and manage notices here.</p>}
+          </CardContent>
+        </Card>
+      </main>
+    </div>
     </>
   )
 }
