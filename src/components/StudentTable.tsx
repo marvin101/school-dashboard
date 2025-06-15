@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Card, CardContent } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { AddStudentModal } from "./AddStudentModal";
 
 interface Student {
   id: number;
@@ -21,7 +21,7 @@ export const StudentTable: FC = () => {
       <CardContent className="p-4">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">Students</h2>
-          <Button>Add Student</Button>
+          <AddStudentModal/>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
